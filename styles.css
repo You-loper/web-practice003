@@ -1,0 +1,82 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+.container {
+    width: 100%;
+    padding: 70px;
+    border-radius: 10px;
+}
+.test{
+ text-align: center;;
+}
+
+.task-container {
+    display: flex;
+}
+.add-task{ 
+    width: 500px;
+    margin-right: 100px;
+}
+.task-list{
+    width: 700px;
+    margin-top: 25px;
+}
+.add-task, .task-list {
+    border-radius: 10px;
+}
+.add-task label, .add-task input, .add-task select {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    text-align: left;
+    padding: 10px;
+    border-radius: 7px;
+}
+.task-list table tr th,td{ text-align: center;}
+.add-task button {
+    margin-top: 15px;
+    width: 100%;
+    padding: 10px;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background-color: #f4f4f4;
+}
+.high {
+    color: red;
+}
+.medium {
+    color: orange;
+}
+.low {
+    color: green;
+}
+.pending {
+    background-color: #ffcc00;
+    padding: 5px;
+    border-radius: 5px;
+}
+.completed {
+    background-color: #28a745;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+}
