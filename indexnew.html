@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        let tasks = [
+            { name: "Complete JavaScript Project", dueDate: "12/01/2023", priority: "High", status: "Pending" }
+        ];   
+        function renderTasks() {
+            const tableBody = document.getElementById("taskTableBody");
+            tableBody.innerHTML = "";
+            tasks.forEach((task, index) => {
+                tableBody.innerHTML += `              
+                    <td class="test">${task.name}</td>
+                    <td class="test">${task.dueDate}</td>
+                    <td class="${task.priority.toLowerCase()} test">${task.priority}</td>
+                    <td class="status ${task.status.toLowerCase()} test" onclick="toggleStatus(${index})">${task.status}</td>            
+                `;
+            });
+        }
+        function toggleStatus(index) {
+            tasks[index].status = tasks[index].status === "Pending" ? "Completed" : "Pending";
+            renderTasks();
+        }
+        function addTask() {
+            const taskName = document.getElementById("taskName").value.trim();
+            const dueDate = document.getElementById("dueDate").value;
+            const priority = document.getElementById("priority").value; 
+            if (!taskName || !dueDate || priority === "Select Priority") {
+                alert("Please fill in all fields and select a valid priority.");
+                return;
+            }
+            const selectedDate = new Date(dueDate);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            if (selectedDate < today|| selectedDate==today) {
+                alert("Due date cannot be in the past.");
+                return;
+            }
+            const formattedDate = formatDate(selectedDate);
+            tasks.push({ name: taskName, dueDate: formattedDate, priority:priority, status: "Pending" });
+            renderTasks();
+            clearForm();
+        }
+        function formatDate(date) {
+            const month = (date.getMonth() + 1).toString().padStart(2, "0");
+            const day = date.getDate().toString().padStart(2, "0");
+            const year = date.getFullYear();
+            return `${month}/${day}/${year}`;
+        }
+        function clearForm() {
+            document.getElementById("taskName").value = "";
+            document.getElementById("dueDate").value = "";
+            document.getElementById("priority").value = "Select Priority";
+        }
+        document.addEventListener("DOMContentLoaded", renderTasks);
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Dear teacher, This is my practice 3</h1>
+        <div class="task-container">
+            <div class="add-task">
+                <h2>Add Task </h2>
+                <label>Task Name</label>
+                <input type="text" id="taskName" placeholder="HRD Homework">
+                <label>Choose Date</label>
+                <input type="date" id="dueDate">
+                <label>Priority</label>
+                <select id="priority">
+                    <option>Select Priority</option>
+                    <option>High</option>
+                    <option>Medium</option>
+                    <option>Low</option>
+                </select>
+                <button onclick="addTask()">Add New Task</button>
+            </div>
+            <div class="task-list">
+                <h2>Task List</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>TASK NAME</th>
+                            <th>DUE DATE</th>
+                            <th>PRIORITY</th>
+                            <th>STATUS</th> 
+                        </tr>
+                    </thead>
+                    <tbody id="taskTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
